@@ -17,14 +17,12 @@ document
       '<i class="fas fa-spinner fa-spin"></i> Calculando...';
 
     try {
-      const response = await fetch(
-        "http://localhost:7071/api/predict_viability",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ budget, weeks, complexity }),
-        },
-      );
+      // Usar ruta relativa para que funcione tanto en local (vía proxy si se configura) como en producción
+      const response = await fetch("/api/predict_viability", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ budget, weeks, complexity }),
+      });
 
       if (!response.ok) throw new Error("Error al conectar con el servidor");
 
@@ -98,7 +96,7 @@ document
     statusText.classList.add("hidden");
 
     try {
-      const response = await fetch("http://localhost:7071/api/save_report", {
+      const response = await fetch("/api/save_report", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
