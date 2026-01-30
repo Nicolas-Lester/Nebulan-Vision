@@ -89,10 +89,10 @@ def save_report(req: func.HttpRequest) -> func.HttpResponse:
 
         # Save to Azure Blob Storage
         # Ensuring we have a connection string, checking generic env var
-        connect_str = os.environ.get("AzureWebJobsStorage")
+        connect_str = os.environ.get("MY_STORAGE_CONNECTION")
         if not connect_str:
              return func.HttpResponse(
-                json.dumps({"error": "AzureWebJobsStorage connection string not found in environment"}), 
+                json.dumps({"error": "MY_STORAGE_CONNECTION connection string not found in environment"}), 
                 status_code=500,
                 headers=get_cors_headers()
             )
