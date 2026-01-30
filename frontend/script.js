@@ -24,7 +24,7 @@ document
         body: JSON.stringify({ budget, weeks, complexity }),
       });
 
-      if (!response.ok) throw new Error("Error al conectar con el servidor");
+      if (!response.ok) throw new Error(`Error del servidor: ${response.status} ${response.statusText}`);
 
       const data = await response.json();
       latestPrediction = data; // Store for later report saving
